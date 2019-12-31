@@ -1,4 +1,5 @@
 source /etc/profile; \
+
 # config httpd
 \cp -f /root/inst/idp3config/httpd.conf /etc/httpd/conf/httpd.conf
 \cp -f /root/inst/idp3config/index.html /var/www/html/index.html
@@ -41,8 +42,9 @@ systemctl restart httpd
 systemctl restart tomcat
 
 # config CAS
-\cp -f /root/inst/idp3config/shibcas-authn-beans.xml /opt/shibboleth-idp/flow/authn/Shibcas/shibcas-authn-beans.xml
-\cp -f /root/inst/idp3config/shibcas-authn-flow.xml /opt/shibboleth-idp/flow/authn/Shibcas/shibcas-authn-flow.xml
+mkdir -p /opt/shibboleth-idp/flows/authn/Shibcas/
+\cp -f /root/inst/idp3config/shibcas-authn-beans.xml /opt/shibboleth-idp/flows/authn/Shibcas/shibcas-authn-beans.xml
+\cp -f /root/inst/idp3config/shibcas-authn-flow.xml /opt/shibboleth-idp/flows/authn/Shibcas/shibcas-authn-flow.xml
 \cp -f /root/inst/idp3config/no-conversation-state.jsp /opt/shibboleth-idp/edit-webapp/no-conversation-state.jsp
 \cp -f /root/inst/idp3config/shib-cas-authenticator-3.2.3.jar /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/shib-cas-authenticator-3.2.3.jar
 \cp -f /root/inst/idp3config/cas-client-core-3.4.1.jar /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/cas-client-core-3.4.1.jar
@@ -50,5 +52,6 @@ systemctl restart tomcat
 \cp -f /root/inst/idp3config/general-authn.xml /opt/shibboleth-idp/conf/authn/general-authn.xml
 \cp -f /root/inst/idp3config/web.xml /opt/shibboleth-idp/edit-webapp/WEB-INF/web.xml
 \cp -f /root/inst/idp3config/attribute-resolver-cas.xml /opt/shibboleth-idp/conf/attribute-resolver.xml
+chown -R tomcat.tomcat /opt/shibboleth-idp
 /opt/shibboleth-idp/bin/build.sh
 systemctl restart tomcat
