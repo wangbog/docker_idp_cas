@@ -19,7 +19,7 @@ sudo yum -y install docker-ce docker-ce-cli containerd.io
 
 sudo systemctl start docker
 
-可以用hello-world docker镜像验证一下环境： sudo docker run hello-world
+可以用hello-world docker镜像验证一下环境（这一步可以不做）： sudo docker run hello-world
 
 git clone https://github.com/carsi-cernet/docker_idp_ldap.git
 
